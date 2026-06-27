@@ -1,0 +1,6 @@
+{
+  "name": "TutorNow",
+  "description": "India's premier premium On-Demand Home Tutor Marketplace connecting Parents & Students with nearby verified Home Tutors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
