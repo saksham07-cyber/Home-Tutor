@@ -239,6 +239,9 @@ fun TutorAuthView(
 // ------------------------------------------------------------------------
 // WELCOME SCREEN
 // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
+// WELCOME SCREEN (Bento Grid Design System)
+// ------------------------------------------------------------------------
 @Composable
 fun WelcomeScreen(onNavigateTo: (String) -> Unit) {
     Column(
@@ -265,7 +268,7 @@ fun WelcomeScreen(onNavigateTo: (String) -> Unit) {
             )
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         // App Branding
         Text(
@@ -285,92 +288,286 @@ fun WelcomeScreen(onNavigateTo: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-        // Professional Onboarding Graphic Representation
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFFEFF6FF)),
-            shape = RoundedCornerShape(20.dp)
+        // -------------------------------------------------------------
+        // BENTO GRID DESIGN SYSTEM
+        // -------------------------------------------------------------
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Row(
+            // Bento Row 1: Student / Parent Portal (Hero Card - Blue Theme)
+            Card(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                    .fillMaxWidth()
+                    .height(140.dp)
+                    .clickable { onNavigateTo("STUDENT_LOGIN") }
+                    .border(1.5.dp, Color(0xFFBFDBFE), RoundedCornerShape(24.dp)),
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEFF6FF))
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(Color.White),
-                    contentAlignment = Alignment.Center
-                ) {
+                Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
+                    // Accent subtle circle in corner
+                    Box(
+                        modifier = Modifier
+                            .size(120.dp)
+                            .align(Alignment.BottomEnd)
+                            .offset(x = 30.dp, y = 30.dp)
+                            .background(Color(0xFFDBEAFE).copy(alpha = 0.5f), CircleShape)
+                    )
+                    
+                    Column(
+                        modifier = Modifier.fillMaxHeight().fillMaxWidth(0.85f),
+                        verticalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .background(Color.White),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Person,
+                                    contentDescription = "Student Portal",
+                                    tint = Color(0xFF2563EB),
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Box(
+                                modifier = Modifier
+                                    .background(Color(0xFF2563EB), RoundedCornerShape(8.dp))
+                                    .padding(horizontal = 8.dp, vertical = 3.dp)
+                            ) {
+                                Text(
+                                    text = "MOST POPULAR",
+                                    color = Color.White,
+                                    fontSize = 8.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    letterSpacing = 0.5.sp
+                                )
+                            }
+                        }
+                        
+                        Column {
+                            Text(
+                                text = "Student & Parent Portal",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.ExtraBold,
+                                color = Color(0xFF1E3A8A)
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "Find, book, and coordinate sessions with verified local home tutors.",
+                                fontSize = 11.sp,
+                                color = Color(0xFF1E40AF).copy(alpha = 0.8f),
+                                maxLines = 2
+                            )
+                        }
+                    }
+                    
                     Icon(
-                        imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "Premium verified",
-                        tint = Color(0xFF10B981),
-                        modifier = Modifier.size(24.dp)
+                        imageVector = Icons.Default.KeyboardArrowRight,
+                        contentDescription = "Go",
+                        tint = Color(0xFF2563EB),
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .size(28.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(16.dp))
-                Column {
-                    Text(
-                        text = "Verified Elite Educators",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF1E3A8A)
-                    )
-                    Text(
-                        text = "Curated top-tier tutors delivered safely to your location in Noida.",
-                        fontSize = 11.sp,
-                        color = Color(0xFF1E40AF).copy(alpha = 0.8f)
-                    )
+            }
+
+            // Bento Row 2: Tutor & Admin Split Cells
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // Tutor Cell (Left)
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(130.dp)
+                        .clickable { onNavigateTo("TUTOR_LOGIN") }
+                        .border(1.dp, Color(0xFFE2E8F0), RoundedCornerShape(20.dp)),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(Color(0xFFF1F5F9)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Tutor Portal",
+                                tint = Color(0xFF0F172A),
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
+                        
+                        Column {
+                            Text(
+                                text = "Tutor Workspace",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF0F172A)
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "Manage classes & earnings",
+                                fontSize = 10.sp,
+                                color = Color(0xFF64748B),
+                                lineHeight = 12.sp
+                            )
+                        }
+                    }
+                }
+
+                // Admin Cell (Right)
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(130.dp)
+                        .clickable { onNavigateTo("ADMIN_LOGIN") }
+                        .border(1.dp, Color(0xFFFFEDD5), RoundedCornerShape(20.dp)),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF7ED))
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(Color(0xFFFFE3E3).copy(alpha = 0.5f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Settings,
+                                contentDescription = "Admin Portal",
+                                tint = Color(0xFFD97706),
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
+                        
+                        Column {
+                            Text(
+                                text = "Admin HQ Hub",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF78350F)
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "Manage platform audits",
+                                fontSize = 10.sp,
+                                color = Color(0xFFB45309),
+                                lineHeight = 12.sp
+                            )
+                        }
+                    }
+                }
+            }
+
+            // Bento Row 3: Meta & Stats Cells (Interactive visual indicators)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // Left Mini Card - Coverage Stat
+                Card(
+                    modifier = Modifier
+                        .weight(1.1f)
+                        .height(64.dp)
+                        .border(1.dp, Color(0xFFD1FAE5), RoundedCornerShape(16.dp)),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFECFDF5))
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(8.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFF10B981))
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Column {
+                            Text(
+                                text = "Noida Live Coverage",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF065F46)
+                            )
+                            Text(
+                                text = "Verified Elite Experts Only",
+                                fontSize = 9.sp,
+                                color = Color(0xFF047857)
+                            )
+                        }
+                    }
+                }
+
+                // Right Mini Card - Rating Star
+                Card(
+                    modifier = Modifier
+                        .weight(0.9f)
+                        .height(64.dp)
+                        .border(1.dp, Color(0xFFFEF3C7), RoundedCornerShape(16.dp)),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFBEB))
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "Rating Star",
+                            tint = Color(0xFFF59E0B),
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Column {
+                            Text(
+                                text = "4.9★ Rating",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF78350F)
+                            )
+                            Text(
+                                text = "Top CBSE/ICSE scorers",
+                                fontSize = 9.sp,
+                                color = Color(0xFF92400E)
+                            )
+                        }
+                    }
                 }
             }
         }
 
-        Text(
-            text = "CONTINUE YOUR EXPERIENCE AS",
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF94A3B8),
-            letterSpacing = 1.sp,
-            modifier = Modifier.padding(bottom = 12.dp)
-        )
-
-        // Persona Selection Buttons (Luxury Card Style)
-        PersonaOptionCard(
-            title = "Student / Parent Portal",
-            subtitle = "Book hyper-personalized elite home tutors nearby",
-            icon = Icons.Default.Person,
-            colorScheme = Color(0xFF2563EB),
-            onClick = { onNavigateTo("STUDENT_LOGIN") }
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        PersonaOptionCard(
-            title = "Elite Tutor Workspace",
-            subtitle = "Manage scheduling, accept bookings & track wallet",
-            icon = Icons.Default.Edit,
-            colorScheme = Color(0xFF0F172A),
-            onClick = { onNavigateTo("TUTOR_LOGIN") }
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        PersonaOptionCard(
-            title = "Admin HQ Dashboard",
-            subtitle = "Authorize partners, verify credentials & audit payouts",
-            icon = Icons.Default.Settings,
-            colorScheme = Color(0xFFF97316),
-            onClick = { onNavigateTo("ADMIN_LOGIN") }
-        )
-        
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         
         // Trust and security disclaimer
         Row(
@@ -384,70 +581,11 @@ fun WelcomeScreen(onNavigateTo: (String) -> Unit) {
                 tint = Color(0xFF10B981),
                 modifier = Modifier.size(14.dp)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(6.dp))
             Text(
                 text = "End-to-End Encrypted Session Management",
                 fontSize = 10.sp,
                 color = Color(0xFF64748B)
-            )
-        }
-    }
-}
-
-@Composable
-fun PersonaOptionCard(
-    title: String,
-    subtitle: String,
-    icon: ImageVector,
-    colorScheme: Color,
-    onClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .border(1.dp, Color(0xFFE2E8F0), RoundedCornerShape(16.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(44.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(colorScheme.copy(alpha = 0.1f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = title,
-                    tint = colorScheme,
-                    modifier = Modifier.size(22.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = title,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F172A)
-                )
-                Text(
-                    text = subtitle,
-                    fontSize = 11.sp,
-                    color = Color(0xFF64748B)
-                )
-            }
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "Go",
-                tint = Color(0xFF94A3B8)
             )
         }
     }
@@ -541,6 +679,31 @@ fun StudentLoginFlow(
 
         if (!isOtpSent) {
             // Step 1: Input Phone
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFEFF6FF)),
+                shape = RoundedCornerShape(12.dp),
+                border = BorderStroke(1.dp, Color(0xFFBFDBFE))
+            ) {
+                Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = "Demo Sandbox Info",
+                        tint = Color(0xFF2563EB),
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = "Demo Mode: SMS gateway is simulated. Please enter any 10-digit phone number, then enter code 123456 on the next step.",
+                        color = Color(0xFF1E3A8A),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+            }
+
             OutlinedTextField(
                 value = phone,
                 onValueChange = { if (it.length <= 10) onPhoneChange(it) },
@@ -551,8 +714,14 @@ fun StudentLoginFlow(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(14.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color(0xFF0F172A),
+                    unfocusedTextColor = Color(0xFF0F172A),
+                    focusedLabelColor = Color(0xFF2563EB),
+                    unfocusedLabelColor = Color(0xFF64748B),
                     focusedBorderColor = Color(0xFF2563EB),
-                    unfocusedBorderColor = Color(0xFFE2E8F0)
+                    unfocusedBorderColor = Color(0xFFCBD5E1),
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color(0xFFF8FAFC)
                 ),
                 singleLine = true
             )
@@ -643,8 +812,14 @@ fun StudentLoginFlow(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(14.dp),
                 colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color(0xFF0F172A),
+                    unfocusedTextColor = Color(0xFF0F172A),
+                    focusedLabelColor = Color(0xFF2563EB),
+                    unfocusedLabelColor = Color(0xFF64748B),
                     focusedBorderColor = Color(0xFF2563EB),
-                    unfocusedBorderColor = Color(0xFFE2E8F0)
+                    unfocusedBorderColor = Color(0xFFCBD5E1),
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color(0xFFF8FAFC)
                 ),
                 singleLine = true
             )
@@ -771,8 +946,14 @@ fun TutorLoginFlow(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color(0xFF0F172A),
+                unfocusedTextColor = Color(0xFF0F172A),
+                focusedLabelColor = Color(0xFF2563EB),
+                unfocusedLabelColor = Color(0xFF64748B),
                 focusedBorderColor = Color(0xFF2563EB),
-                unfocusedBorderColor = Color(0xFFE2E8F0)
+                unfocusedBorderColor = Color(0xFFCBD5E1),
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color(0xFFF8FAFC)
             ),
             singleLine = true
         )
@@ -798,8 +979,14 @@ fun TutorLoginFlow(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color(0xFF0F172A),
+                unfocusedTextColor = Color(0xFF0F172A),
+                focusedLabelColor = Color(0xFF2563EB),
+                unfocusedLabelColor = Color(0xFF64748B),
                 focusedBorderColor = Color(0xFF2563EB),
-                unfocusedBorderColor = Color(0xFFE2E8F0)
+                unfocusedBorderColor = Color(0xFFCBD5E1),
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color(0xFFF8FAFC)
             ),
             singleLine = true
         )
@@ -958,8 +1145,14 @@ fun AdminLoginFlow(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color(0xFF0F172A),
+                unfocusedTextColor = Color(0xFF0F172A),
+                focusedLabelColor = Color(0xFF2563EB),
+                unfocusedLabelColor = Color(0xFF64748B),
                 focusedBorderColor = Color(0xFF2563EB),
-                unfocusedBorderColor = Color(0xFFE2E8F0)
+                unfocusedBorderColor = Color(0xFFCBD5E1),
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color(0xFFF8FAFC)
             ),
             singleLine = true
         )
@@ -977,8 +1170,14 @@ fun AdminLoginFlow(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
+                focusedTextColor = Color(0xFF0F172A),
+                unfocusedTextColor = Color(0xFF0F172A),
+                focusedLabelColor = Color(0xFF2563EB),
+                unfocusedLabelColor = Color(0xFF64748B),
                 focusedBorderColor = Color(0xFF2563EB),
-                unfocusedBorderColor = Color(0xFFE2E8F0)
+                unfocusedBorderColor = Color(0xFFCBD5E1),
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = Color(0xFFF8FAFC)
             ),
             singleLine = true
         )
